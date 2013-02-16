@@ -16,6 +16,7 @@
 
 
     // taking this pattern from twain's unit tests
+    // custom timer, so we can tick across the period at our own pace
 
     function ticker() {
         var time = 0;
@@ -30,9 +31,7 @@
         return f;
     }
 
-
     function grain(arr, options) {
-
         options || (options = {});
 
         var period = options.period || 100,
@@ -49,13 +48,14 @@
         }).from(arr[0]);
 
 
-
-
         each(arr, function(target, index) {            
-            if(index===0) return;
+            if(index===0) return;  // ditch the first value
+            var src = arr[index-1];
+            var factor = (target - src)/period;
             for(var i = 0; i < period; i++) {
                 t.update();
-                t.to(arr[index-1] + (i*(target - arr[index-1])/period));
+                // keep updating the target to a point in between 
+                t.to(src + (i*factor));
             }
         });
         return result;

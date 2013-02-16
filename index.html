@@ -7,6 +7,7 @@
     <canvas id="visualization" width="3000" height="600"></canvas>
     <script src="build/build.js"></script>
     <script>
+
         var grain = require('grain'),
             each = grain.Twain.util.each;
         // generate a random array
@@ -16,32 +17,29 @@
         }
 
         var period = 50;
-        var multiplier = 0.05
+        var multiplier = 0.05;
 
         var smooth = grain(arr, {
             period: period,
             multiplier: multiplier
         });
 
+        // lets plot this on a graph to get the message across
         function draw() {
             var canvas = document.getElementById('visualization');
             if(canvas.getContext) {
                 var ctx = canvas.getContext('2d');
-                ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-                each(smooth, function(pt,i) {
-                    ctx.fillRect(i-1, pt-1, 2, 2);
+                ctx.fillStyle = "rgba(0, 0, 200, 1)";
+                each(smooth, function(pt, i) {
+                    ctx.fillRect(i - 1, pt - 1, 2, 2);
                 });
 
-                ctx.fillStyle = "rgba(200, 0, 0, 0.5)";
+                ctx.fillStyle = "rgba(200, 0, 0, 1)";
                 each(arr, function(pt, i) {
-                    ctx.fillRect(i*period, pt-5, 10, 10);
+                    ctx.fillRect(i * period - 2, pt - 2, 4, 4);
                 });
-
             }
-
-
         }
-
 
     </script>
 

@@ -1,0 +1,15 @@
+{
+  "name": "grain",
+  "repo": "threepointone/grain",
+  "description": "smoothing time series with twain",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "threepointone/twain": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}

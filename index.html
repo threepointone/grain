@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Grain demo</title>
+</head>
+<body>
+
+    <script src="build/build.js"></script>
+    <script>
+        // generate a random array
+        var arr = [];
+        for(var i=0; i<10;i++){
+            arr.push({
+                x: i*30,
+                y: Math.random()*300
+            });
+        }
+
+        console.log(require('grain')(arr,{
+            period: 30
+        }));
+
+    </script>
+
+</body>
+</html>

@@ -19,7 +19,6 @@
 
     function ticker() {
         var time = 0;
-
         function f() {
             return time;
         }
@@ -36,13 +35,11 @@
 
         options || (options = {});
 
-        var period = options.period || 100;
+        var period = options.period || 100,
+            timer = ticker(),
+            result = [];
 
-        var timer = ticker();
-
-        var result = [];
-
-        var t = (typeof arr[0] === 'number' ? Twain.Tween : Twain)(extend({}, {
+        var t = Twain.Tween(extend({}, {
             now: timer
         }, options));
 
@@ -52,19 +49,20 @@
         }).from(arr[0]);
 
 
-        each(arr, function(target, i) {
-            if(i === 0) return; // ignore the first one. 
-            t.to(target);
 
+
+        each(arr, function(target, index) {            
+            if(index===0) return;
             for(var i = 0; i < period; i++) {
                 t.update();
+                t.to(arr[index-1] + (i*(target - arr[index-1])/period));
             }
-
         });
         return result;
-
     }
 
+    // exports
+    grain.Twain = Twain;
     return grain;
 
 });

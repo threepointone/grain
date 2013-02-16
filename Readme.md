@@ -12,9 +12,9 @@
 ```js 
 // speculative, work in progress
 
-var smooth = require('grain')(arr, { steps: 100, multiplier:0.01});
+var smooth = require('grain')(arr, { period: 100, multiplier:0.01});
 
-// should return arr.length*100 points
+// should return (arr.length-1)*100 points
 
 
 ```

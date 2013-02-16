@@ -39,7 +39,6 @@
         var period = options.period || 100;
 
         var timer = ticker();
-        console.log(timer.tick);
 
         var result = [];
 
